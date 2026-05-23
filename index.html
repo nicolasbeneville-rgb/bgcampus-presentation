@@ -385,12 +385,33 @@
             gap: 4px;
             margin-top: 10px;
             padding: 3px 10px;
-            background: rgba(124,58,237,0.08);
-            border: 1px solid rgba(124,58,237,0.15);
             border-radius: 12px;
             font-size: 0.65rem;
             font-weight: 700;
+        }
+
+        .ia-badge.active {
+            background: rgba(34,197,94,0.1);
+            border: 1px solid rgba(34,197,94,0.2);
+            color: #16a34a;
+        }
+
+        .ia-badge.priority {
+            background: rgba(255,140,0,0.1);
+            border: 1px solid rgba(255,140,0,0.2);
+            color: #d97706;
+        }
+
+        .ia-badge.planned {
+            background: rgba(124,58,237,0.08);
+            border: 1px solid rgba(124,58,237,0.15);
             color: var(--purple);
+        }
+
+        .ia-badge.explore {
+            background: rgba(37,99,235,0.08);
+            border: 1px solid rgba(37,99,235,0.15);
+            color: var(--blue);
         }
 
         /* ═══ TESTIMONIAL ═══ */
@@ -598,8 +619,8 @@
         <div class="feature-text">
             <span class="tag">Enseignants & École de tennis</span>
             <h2>Fini le flou sur les heures et les missions</h2>
-            <p class="desc" style="color:#dc2626; font-weight:500;">⚠️ Risque : un contrôle URSSAF peut requalifier un enseignant en salarié si les heures ne sont pas tracées. Amendes, rappels de cotisations, prud'hommes.</p>
-            <p class="desc">L'enseignant déclare depuis le court. Le club compare en temps réel le réalisé au prévisionnel. Transparence totale = protection juridique.</p>
+            <p class="desc" style="color:#dc2626; font-weight:500;">⚠️ Aujourd'hui : des heures estimées, des missions non formalisées. En cas de question, rien de concret à montrer.</p>
+            <p class="desc">L'enseignant déclare depuis le court. Le club compare en temps réel le réalisé au prévisionnel. Traçabilité complète, confiance réciproque.</p>
             <ul class="feature-list">
                 <li><span class="check">✓</span> Déclaration d'heures en 2 clics depuis le terrain</li>
                 <li><span class="check">✓</span> Comparaison réalisé / prévisionnel par mission et par sport</li>
@@ -623,7 +644,7 @@
         <div class="feature-text">
             <span class="tag">Comptabilité & Subventions</span>
             <h2>Votre budget sous contrôle, vos dossiers prêts</h2>
-            <p class="desc" style="color:#dc2626; font-weight:500;">⚠️ Risque : sans prévisionnel clair, impossible de justifier l'autofinancement de l'école auprès des financeurs. Subventions refusées, trésorerie en danger.</p>
+            <p class="desc" style="color:#dc2626; font-weight:500;">⚠️ Aujourd'hui : sans prévisionnel clair, impossible de démontrer l'autofinancement de l'école aux financeurs. Dossiers incomplets = subventions retardées.</p>
             <p class="desc">Prévisionnel basé sur N-1, suivi en temps réel, export automatique pour chaque financeur. L'autofinancement de l'école est démontrable à tout moment.</p>
             <ul class="feature-list">
                 <li><span class="check">✓</span> Budget vs réalisé — recettes, dépenses, provisions, trésorerie</li>
@@ -643,7 +664,7 @@
         <div class="feature-text">
             <span class="tag">Compétitions par équipe</span>
             <h2>Dispos, sélections, résultats — sans un SMS</h2>
-            <p class="desc" style="color:#dc2626; font-weight:500;">⚠️ Problème : des dizaines de SMS pour savoir qui est dispo, des oublis, des forfaits évitables. Le capitaine passe plus de temps à relancer qu'à préparer le match.</p>
+            <p class="desc" style="color:#dc2626; font-weight:500;">⚠️ Aujourd'hui : des dizaines de SMS pour connaître les dispos, des oublis, des forfaits évitables. Le capitaine passe plus de temps à relancer qu'à préparer.</p>
             <p class="desc">Le joueur déclare sa disponibilité en 2 clics. Le capitaine compose son équipe en temps réel. Plus de relances, plus d'oublis.</p>
             <ul class="feature-list">
                 <li><span class="check">✓</span> Gestion complète des championnats (poules, journées, matchs)</li>
@@ -663,7 +684,7 @@
         <div class="feature-text">
             <span class="tag">Pilotage du bureau</span>
             <h2>Projets, relances, documents — rien ne se perd</h2>
-            <p class="desc" style="color:#dc2626; font-weight:500;">⚠️ Problème : les actions décidées en réunion tombent dans l'oubli. Les documents expirent sans prévenir. La passation entre dirigeants est chaotique.</p>
+            <p class="desc" style="color:#dc2626; font-weight:500;">⚠️ Aujourd'hui : les décisions prises en réunion tombent dans l'oubli. Les documents expirent sans prévenir. La passation entre dirigeants repart de zéro.</p>
             <p class="desc">Chaque action est attribuée, datée, relancée automatiquement. Les documents réglementaires sont centralisés avec alertes d'expiration. La mémoire du club ne dépend plus d'une seule personne.</p>
             <ul class="feature-list">
                 <li><span class="check">✓</span> Gestion de projets : qui fait quoi, pour quand, avec relance auto</li>
@@ -688,37 +709,37 @@
                 <div class="card-icon">📣</div>
                 <h3>Communication IA</h3>
                 <p>Génération automatique de posts réseaux sociaux adaptés au ton du club. Choix du style, templates multi-plateformes.</p>
-                <span class="ia-badge">✓ Déjà actif</span>
+                <span class="ia-badge active">✓ Déjà actif</span>
             </div>
             <div class="roadmap-card">
                 <div class="card-icon">🧾</div>
                 <h3>Photo facture → écriture comptable</h3>
                 <p>Photographiez une facture depuis votre téléphone. L'IA extrait le montant, la catégorie et pré-remplit l'écriture.</p>
-                <span class="ia-badge">🔜 Saison 2026-2027</span>
+                <span class="ia-badge priority">🚀 Prochaine priorité</span>
             </div>
             <div class="roadmap-card">
                 <div class="card-icon">🏛️</div>
                 <h3>Remplissage dossiers subventions</h3>
                 <p>L'IA pré-remplit les formulaires de subvention à partir de vos données comptables et d'activité. Vous validez, vous envoyez.</p>
-                <span class="ia-badge">🔜 Saison 2026-2027</span>
+                <span class="ia-badge priority">🚀 Prochaine priorité</span>
             </div>
             <div class="roadmap-card">
                 <div class="card-icon">📊</div>
                 <h3>Analyse budgétaire assistée</h3>
                 <p>Détection d'anomalies, suggestions d'optimisation, comparaison inter-saisons. L'IA vous alerte avant le problème.</p>
-                <span class="ia-badge">🔜 Saison 2026-2027</span>
+                <span class="ia-badge planned">📅 Planifié 2026-2027</span>
             </div>
             <div class="roadmap-card">
                 <div class="card-icon">📋</div>
                 <h3>Quitus annuel automatique</h3>
                 <p>Génération du rapport moral et financier à partir des données de la saison. Prêt pour l'AG en quelques clics.</p>
-                <span class="ia-badge">🔜 Saison 2026-2027</span>
+                <span class="ia-badge planned">📅 Planifié 2026-2027</span>
             </div>
             <div class="roadmap-card">
                 <div class="card-icon">🎯</div>
                 <h3>Assistant planning enseignants</h3>
                 <p>Suggestions de planning basées sur l'historique, la charge et les contraintes de chaque enseignant.</p>
-                <span class="ia-badge">🔜 Saison 2026-2027</span>
+                <span class="ia-badge explore">🔬 En exploration</span>
             </div>
         </div>
     </section>
