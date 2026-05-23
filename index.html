@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BG Campus — Comité du Var de Tennis</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide-static@0.263.1/font/lucide.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --dark-base: #0D1B2A;
+            --dark-mid: #1B2838;
+            --bleu-nuit: #0A1B3D;
+            --bleu-royal: #2563EB;
+            --orange: #FF8C00;
+            --orange-glow: rgba(255, 140, 0, 0.15);
+            --vert: #22C55E;
+            --text-primary: #F8FAFC;
+            --text-secondary: rgba(255,255,255,0.6);
+            --text-dark: #1E293B;
+            --text-dark-secondary: #64748B;
+            --surface-light: #FAFAFA;
+            --border-subtle: rgba(255,255,255,0.08);
+            --white: #FFFFFF;
+        }
+
+        html, body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--dark-base);
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* SLIDES */
+        .slides-wrapper {
+            display: flex;
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 100vh;
+        }
+
+        .slide {
+            min-width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* PROGRESS DOTS (bas, discret) */
+        .progress-dots {
+            position: fixed;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 100;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background: var(--orange);
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        /* NAV BUTTONS */
+        .nav-controls {
+            position: fixed;
+            bottom: 24px;
+            right: 35px;
+            display: flex;
+            gap: 8px;
+            z-index: 100;
+        }
+
+        .nav-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(255,255,255,0.2);
+            background: rgba(13,27,42,0.8);
+            color: white;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn:hover {
+            background: var(--orange);
+            border-color: var(--orange);
+        }
+
+        /* ═══════════════════════════════════════════ */
+        /* SLIDE 1 — CONSTAT (fond sombre premium)   */
+        /* ═══════════════════════════════════════════ */
+        .slide-1 {
+            background: radial-gradient(ellipse at 30% 50%, #112240 0%, var(--dark-base) 70%);
+            color: var(--text-primary);
+        }
+
+        .slide-1 .logo-intro {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--orange);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .slide-1 h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            margin-bottom: 50px;
+            text-align: center;
+            line-height: 1.15;
+            max-width: 900px;
+        }
+
+        .slide-1 h1 span { color: var(--orange); }
+
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        .problem-category {
+            background: var(--border-subtle);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 24px 22px;
+            backdrop-filter: blur(10px);
+        }
+
+        .problem-category h3 {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .problem-category.cat-finance h3 { color: #fca5a5; }
+        .problem-category.cat-terrain h3 { color: #93c5fd; }
+        .problem-category.cat-admin h3 { color: #fde68a; }
+
+        .problem-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .problem-item:last-child { margin-bottom: 0; }
+
+        .problem-item .pi-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .problem-item h4 {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 2px;
+        }
+
+        .problem-item p {
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.45);
+            line-height: 1.3;
+        }
+
+        /* ═══════════════════════════════════════════ */
+        /* SLIDES FEATURES — Layout varié            */
+        /* ═══════════════════════════════════════════ */
+
+        /* SLIDE 2 — Enseignants (fond sombre, layout horizontal) */
+        .slide-2 {
+            background: linear-gradient(135deg, var(--dark-base) 0%, #112240 100%);
+            color: var(--text-primary);
+        }
+
+        .slide-2 .section-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--orange);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+
+        .slide-2 h1 {
+            font-size: 2.6rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .slide-2 .subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+
+        .feature-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1150px;
+            width: 100%;
+        }
+
+        .feat-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 14px;
+            padding: 24px 20px;
+            transition: border-color 0.2s;
+        }
+
+        .feat-card:hover { border-color: var(--orange); }
+
+        .feat-card .feat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--orange);
+            margin-bottom: 8px;
+        }
+
+        .feat-card h3 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .feat-card p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .feat-card .platform-tag {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            background: rgba(34, 197, 94, 0.15);
+            color: #86efac;
+        }
+
+        .badge-soon {
+            display: inline-block;
+            margin-top: 8px;
+            margin-left: 6px;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            background: rgba(255,140,0,0.15);
+            color: var(--orange);
+        }
+
+        /* SLIDE 3 — Compta (fond clair, chiffre fort + features) */
+        .slide-3 {
+            background: var(--surface-light);
+            color: var(--text-dark);
+        }
+
+        .slide-3 .section-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--bleu-royal);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+
+        .slide-3 h1 {
+            font-size: 2.6rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .slide-3 h1 span { color: var(--bleu-royal); }
+
+        .slide-3 .subtitle {
+            font-size: 1rem;
+            color: var(--text-dark-secondary);
+            margin-bottom: 40px;
+        }
+
+        .compta-layout {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 35px;
+            max-width: 1100px;
+            width: 100%;
+            align-items: center;
+        }
+
+        .big-number-block {
+            text-align: center;
+            padding: 35px 25px;
+            background: white;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+        }
+
+        .big-number-block .number {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--bleu-royal);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .big-number-block .label {
+            font-size: 0.9rem;
+            color: var(--text-dark-secondary);
+            font-weight: 500;
+        }
+
+        .compta-features {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .compta-feat {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 16px 18px;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .compta-feat .cf-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: #eff6ff;
+            color: var(--bleu-royal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .compta-feat h4 {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 3px;
+        }
+
+        .compta-feat p {
+            font-size: 0.78rem;
+            color: var(--text-dark-secondary);
+            line-height: 1.4;
+        }
+
+        /* SLIDE 4 — Compétitions & Com (fond sombre, split) */
+        .slide-4 {
+            background: var(--dark-base);
+            color: var(--text-primary);
+        }
+
+        .slide-4 .section-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--orange);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+
+        .slide-4 h1 {
+            font-size: 2.6rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .slide-4 .subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        .split-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 30px 26px;
+        }
+
+        .split-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .split-card h3 .card-icon {
+            font-size: 1.3rem;
+        }
+
+        .split-card p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+
+        .split-card .highlight-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .split-card .highlight-list li {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.7);
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .split-card .highlight-list li::before {
+            content: "→";
+            color: var(--orange);
+            font-weight: 700;
+        }
+
+        /* SLIDE 5 — Bureau (fond clair, flux visuel) */
+        .slide-5 {
+            background: var(--surface-light);
+            color: var(--text-dark);
+        }
+
+        .slide-5 .section-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--bleu-royal);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+
+        .slide-5 h1 {
+            font-size: 2.6rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .slide-5 h1 span { color: var(--bleu-royal); }
+
+        .slide-5 .subtitle {
+            font-size: 1rem;
+            color: var(--text-dark-secondary);
+            margin-bottom: 40px;
+        }
+
+        .flow-layout {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        .flow-step {
+            flex: 1;
+            background: white;
+            border-radius: 14px;
+            padding: 24px 18px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+
+        .flow-step .fs-icon {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .flow-step h4 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .flow-step p {
+            font-size: 0.75rem;
+            color: var(--text-dark-secondary);
+            line-height: 1.4;
+        }
+
+        .flow-arrow {
+            font-size: 1.2rem;
+            color: var(--bleu-royal);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        /* ═══════════════════════════════════════════ */
+        /* SLIDE 6 — CITATION (slide entière)        */
+        /* ═══════════════════════════════════════════ */
+        .slide-6 {
+            background: linear-gradient(135deg, #0D1B2A 0%, #1a3a5c 100%);
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .slide-6 .proof-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--vert);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .slide-6 .proof-club {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 40px;
+        }
+
+        .slide-6 blockquote {
+            font-size: 1.6rem;
+            font-weight: 400;
+            line-height: 1.6;
+            max-width: 850px;
+            color: var(--text-primary);
+            font-style: italic;
+            margin-bottom: 35px;
+            position: relative;
+        }
+
+        .slide-6 blockquote::before {
+            content: """;
+            position: absolute;
+            top: -30px;
+            left: -20px;
+            font-size: 5rem;
+            color: var(--orange);
+            opacity: 0.3;
+            font-style: normal;
+            line-height: 1;
+        }
+
+        .slide-6 .metrics-row {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .slide-6 .metric {
+            text-align: center;
+        }
+
+        .slide-6 .metric .val {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--orange);
+        }
+
+        .slide-6 .metric .lbl {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .slide-6 .since-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 18px;
+            background: rgba(34, 197, 94, 0.12);
+            border: 1px solid rgba(34, 197, 94, 0.25);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #86efac;
+        }
+
+        /* ═══════════════════════════════════════════ */
+        /* SLIDE 7 — ACTION                          */
+        /* ═══════════════════════════════════════════ */
+        .slide-7 {
+            background: radial-gradient(ellipse at 50% 50%, #112240 0%, var(--dark-base) 70%);
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .slide-7 h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .slide-7 h1 span { color: var(--orange); }
+
+        .slide-7 .opener {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 700px;
+            line-height: 1.5;
+        }
+
+        .cta-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 900px;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+
+        .cta-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 14px;
+            padding: 24px 18px;
+            text-align: center;
+        }
+
+        .cta-card .cta-icon {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+
+        .cta-card h3 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .cta-card p {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .cta-highlight {
+            margin-top: 20px;
+            padding: 16px 30px;
+            background: var(--orange-glow);
+            border: 1px solid rgba(255,140,0,0.3);
+            border-radius: 12px;
+            display: inline-block;
+        }
+
+        .cta-highlight h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--orange);
+            margin-bottom: 4px;
+        }
+
+        .cta-highlight p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .poc-details {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.5;
+        }
+
+        .contact-line {
+            margin-top: 20px;
+        }
+
+        .contact-line a {
+            color: var(--orange);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .contact-line a:hover { border-bottom-color: var(--orange); }
+    </style>
+</head>
+<body>
+
+    <!-- PROGRESS DOTS -->
+    <div class="progress-dots" id="progressDots">
+        <div class="dot active" onclick="goToSlide(0)"></div>
+        <div class="dot" onclick="goToSlide(1)"></div>
+        <div class="dot" onclick="goToSlide(2)"></div>
+        <div class="dot" onclick="goToSlide(3)"></div>
+        <div class="dot" onclick="goToSlide(4)"></div>
+        <div class="dot" onclick="goToSlide(5)"></div>
+        <div class="dot" onclick="goToSlide(6)"></div>
+    </div>
+
+    <div class="slides-wrapper" id="slidesWrapper">
+        
+        <!-- ═══════════════════════════════════════════════ -->
+        <!-- SLIDE 1 : CONSTAT — 3 catégories              -->
+        <!-- ═══════════════════════════════════════════════ -->
+        <div class="slide slide-1">
+            <div class="logo-intro">BG Campus</div>
+            <h1>Ce que <span>chaque club</span><br>gère au quotidien</h1>
+            <div class="problems-grid">
+                <div class="problem-category cat-finance">
+                    <h3>Finances & Risques</h3>
+                    <div class="problem-item">
+                        <div class="pi-icon">⚠️</div>
+                        <div>
+                            <h4>Risque fiscal & social</h4>
+                            <p>Contrats flous, heures non suivies, statut salarié non maîtrisé</p>
+                        </div>
+                    </div>
+                    <div class="problem-item">
+                        <div class="pi-icon">📊</div>
+                        <div>
+                            <h4>Comptabilité opaque</h4>
+                            <p>Pas de prévisionnel, autofinancement non validé</p>
+                        </div>
+                    </div>
+                    <div class="problem-item">
+                        <div class="pi-icon">🧾</div>
+                        <div>
+                            <h4>Factures & subventions</h4>
+                            <p>Dossiers à reformater pour chaque financeur</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="problem-category cat-terrain">
+                    <h3>Terrain & Animation</h3>
+                    <div class="problem-item">
+                        <div class="pi-icon">🏆</div>
+                        <div>
+                            <h4>Compétitions = galère</h4>
+                            <p>Dispos par SMS, résultats dispersés</p>
+                        </div>
+                    </div>
+                    <div class="problem-item">
+                        <div class="pi-icon">🎾</div>
+                        <div>
+                            <h4>École de tennis invisible</h4>
+                            <p>Groupes non suivis, pas de vision annuelle</p>
+                        </div>
+                    </div>
+                    <div class="problem-item">
+                        <div class="pi-icon">📱</div>
+                        <div>
+                            <h4>Communication chronophage</h4>
+                            <p>Des heures sur les réseaux pour peu de résultat</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="problem-category cat-admin">
+                    <h3>Organisation & Admin</h3>
+                    <div class="problem-item">
+                        <div class="pi-icon">📋</div>
+                        <div>
+                            <h4>Projets sans suivi</h4>
+                            <p>Qui fait quoi ? Relances oubliées</p>
+                        </div>
+                    </div>
+                    <div class="problem-item">
+                        <div class="pi-icon">📑</div>
+                        <div>
+                            <h4>AG & documents</h4>
+                            <p>Quitus à rédiger, alertes oubliées</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════ -->
+        <!-- SLIDE 2 : ENSEIGNANTS (fond sombre, 3 cards)  -->
+        <!-- ═══════════════════════════════════════════════ -->
+        <div class="slide slide-2">
+            <div class="section-tag">Module Enseignants</div>
+            <h1>Maîtriser le risque social</h1>
+            <p class="subtitle">Chaque heure tracée, chaque mission valorisée</p>
+            <div class="feature-row">
+                <div class="feat-card">
+                    <div class="feat-number">01</div>
+                    <h3>Heures déclarées sur mobile</h3>
+                    <p>L'enseignant déclare depuis le court. Le club compare en temps réel le réalisé au prévisionnel, par mission et par sport.</p>
+                    <span class="platform-tag">📱 App Mobile Enseignant</span>
+                </div>
+                <div class="feat-card">
+                    <div class="feat-number">02</div>
+                    <h3>Agenda partagé & groupes</h3>
+                    <p>Calendrier multi-vue, récurrence auto, vacances scolaires intégrées. Vision annuelle complète de l'école de tennis.</p>
+                    <span class="platform-tag">💻📱 PC + Mobile</span>
+                </div>
+                <div class="feat-card">
+                    <div class="feat-number">03</div>
+                    <h3>Valorisation des missions</h3>
+                    <p>Analytique hors enseignement pur : animations, communication, formation. Déléguer et valoriser dans la confiance.</p>
+                    <span class="platform-tag">💻 PC Admin</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════ -->
+        <!-- SLIDE 3 : COMPTA (fond clair, big number)     -->
+        <!-- ═══════════════════════════════════════════════ -->
+        <div class="slide slide-3">
+            <div class="section-tag">Module Comptabilité</div>
+            <h1>Vision financière <span>en temps réel</span></h1>
+            <p class="subtitle">Budget maîtrisé, dossiers simplifiés, analytique par sport</p>
+            <div class="compta-layout">
+                <div class="big-number-block">
+                    <div class="number">N-1</div>
+                    <div class="label">Budget prévisionnel<br>basé sur l'exercice précédent</div>
+                </div>
+                <div class="compta-features">
+                    <div class="compta-feat">
+                        <div class="cf-icon">📊</div>
+                        <div>
+                            <h4>Budget vs Réalisé</h4>
+                            <p>Recettes, dépenses, provisions, trésorerie — tout en temps réel. Autofinancement école validé.</p>
+                        </div>
+                    </div>
+                    <div class="compta-feat">
+                        <div class="cf-icon">🧾</div>
+                        <div>
+                            <h4>Dépenses simplifiées</h4>
+                            <p>Saisie rapide, catégorisation. Plus de facturettes qui traînent.</p>
+                            <span class="badge-soon">🔜 Photo facture mobile</span>
+                        </div>
+                    </div>
+                    <div class="compta-feat">
+                        <div class="cf-icon">🏛️</div>
+                        <div>
+                            <h4>Formats budget subventions</h4>
+                            <p>Export multi-format selon les modèles des financeurs.</p>
+                            <span class="badge-soon">🔜 IA remplissage auto</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════ -->
+        <!-- SLIDE 4 : COMPÉTITIONS & COM (split cards)    -->
+        <!-- ═══════════════════════════════════════════════ -->
+        <div class="slide slide-4">
+            <div class="section-tag">Terrain & Visibilité</div>
+            <h1>Compétitions & Communication</h1>
+            <p class="subtitle">Les joueurs sur le terrain, les infos en temps réel</p>
+            <div class="split-layout">
+                <div class="split-card">
+                    <h3><span class="card-icon">🏆</span> Championnats par équipe</h3>
+                    <p>Le joueur déclare sa dispo en 2 clics. Le capitaine voit tout en temps réel.</p>
+                    <ul class="highlight-list">
+                        <li>Gestion des groupes et poules</li>
+                        <li>Dispos joueurs sur téléphone</li>
+                        <li>Résultats et classement auto</li>
+                        <li>Planning matchs par journée</li>
+                    </ul>
+                    <span class="platform-tag" style="margin-top:14px; display:inline-block;">📱 App Joueur</span>
+                </div>
+                <div class="split-card">
+                    <h3><span class="card-icon">📣</span> Communication IA</h3>
+                    <p>1 clic : l'IA génère le contenu dans le ton du club. Plus besoin de chercher l'inspiration.</p>
+                    <ul class="highlight-list">
+                        <li>Génération automatique de posts</li>
+                        <li>Choix du ton et du style</li>
+                        <li>Templates réseaux sociaux</li>
+                        <li>Historique des publications</li>
+                    </ul>
+                    <span class="platform-tag" style="margin-top:14px; display:inline-block;">💻 PC</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════ -->
+        <!-- SLIDE 5 : BUREAU (fond clair, flux visuel)    -->
+        <!-- ═══════════════════════════════════════════════ -->
+        <div class="slide slide-5">
+            <div class="section-tag">Organisation du bureau</div>
+            <h1>Qui fait quoi, <span>pour quand</span></h1>
+            <p class="subtitle">Projets, relances automatiques, documents centralisés</p>
+            <div class="flow-layout">
+                <div class="flow-step">
+                    <div class="fs-icon">📋</div>
+                    <h4>Créer le projet</h4>
+                    <p>Définir l'objectif, l'échéance, les responsables</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="fs-icon">👤</div>
+                    <h4>Assigner les tâches</h4>
+                    <p>Chaque membre sait ce qu'il doit faire</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="fs-icon">🔔</div>
+                    <h4>Relances auto</h4>
+                    <p>Actions en retard, récurrentes, annuelles — rien n'est oublié</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="fs-icon">📄</div>
+                    <h4>Documents & AG</h4>
+                    <p>Attestations, CERFA, PV, alertes expiration</p>
+                </div>
+            </div>
+            <div style="margin-top:20px;">
+                <span class="badge-soon">🔜 Quitus annuel auto (compta, adhérents, animation, école)</span>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════ -->
+        <!-- SLIDE 6 : CITATION PLEINE PAGE                -->
+        <!-- ═══════════════════════════════════════════════ -->
+        <div class="slide slide-6">
+            <div class="proof-label">● En production depuis septembre 2025</div>
+            <div class="proof-club">TCM Puget-Ville — Saison 2025-2026</div>
+            <blockquote>
+                On peut enfin analyser les temps hors enseignement pur et adapter pour l'année prochaine. On reconnaît et on valorise les missions — animations, communication, formation. On peut déléguer dans une confiance réciproque.
+            </blockquote>
+            <div class="metrics-row">
+                <div class="metric">
+                    <div class="val">2</div>
+                    <div class="lbl">Enseignants suivis</div>
+                </div>
+                <div class="metric">
+                    <div class="val">600h</div>
+                    <div class="lbl">Heures tracées</div>
+                </div>
+                <div class="metric">
+                    <div class="val">100%</div>
+                    <div class="lbl">Missions visibles</div>
+                </div>
+            </div>
+            <div class="since-badge">● Production continue depuis 9 mois</div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════ -->
+        <!-- SLIDE 7 : ACTION                              -->
+        <!-- ═══════════════════════════════════════════════ -->
+        <div class="slide slide-7">
+            <h1>Rejoindre le <span>pilote</span></h1>
+            <p class="opener">Vous venez de voir ce qu'un seul club a construit en une saison.<br>Imaginez ce que 5 clubs peuvent co-construire ensemble.</p>
+            <div class="cta-row">
+                <div class="cta-card">
+                    <div class="cta-icon">🤝</div>
+                    <h3>Co-construction</h3>
+                    <p>Le club participe à l'expression des besoins et aux retours d'usage</p>
+                </div>
+                <div class="cta-card">
+                    <div class="cta-icon">🎓</div>
+                    <h3>Accompagnement inclus</h3>
+                    <p>Formation initiale, support continu, adaptation aux spécificités du club</p>
+                </div>
+                <div class="cta-card">
+                    <div class="cta-icon">💶</div>
+                    <h3>Pas d'engagement financier</h3>
+                    <p>La seule contrepartie : des feedbacks structurés pour améliorer la plateforme</p>
+                </div>
+            </div>
+            <div class="cta-highlight">
+                <h3>4 places disponibles — saison 2026-2027</h3>
+                <p>Retours attendus avant le 15 août 2026</p>
+            </div>
+            <div class="poc-details">
+                Un outil conçu pour les clubs du Var, par un dirigeant de club du Var.
+            </div>
+            <div class="contact-line">
+                <a href="mailto:bgcampus83.contact@gmail.com">bgcampus83.contact@gmail.com</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- NAVIGATION -->
+    <div class="nav-controls">
+        <button class="nav-btn" onclick="prevSlide()">←</button>
+        <button class="nav-btn" onclick="nextSlide()">→</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 7;
+        const wrapper = document.getElementById('slidesWrapper');
+        const dots = document.querySelectorAll('.dot');
+
+        function goToSlide(n) {
+            currentSlide = Math.max(0, Math.min(n, totalSlides - 1));
+            wrapper.style.transform = `translateX(-${currentSlide * 100}vw)`;
+            dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+        }
+
+        function nextSlide() { goToSlide(currentSlide + 1); }
+        function prevSlide() { goToSlide(currentSlide - 1); }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextSlide(); }
+            if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
+            if (e.key === 'Home') { e.preventDefault(); goToSlide(0); }
+            if (e.key === 'End') { e.preventDefault(); goToSlide(totalSlides - 1); }
+        });
+
+        let touchStartX = 0;
+        document.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
+        document.addEventListener('touchend', (e) => {
+            const diff = touchStartX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 50) { diff > 0 ? nextSlide() : prevSlide(); }
+        });
+    </script>
+
+</body>
+</html>
