@@ -11,7 +11,8 @@
         
         :root {
             --dark-base: #0D1B2A;
-            --dark-card: #132337;
+            --dark-alt: #132337;
+            --dark-warm: #1a2a3f;
             --bleu-royal: #2563EB;
             --orange: #FF8C00;
             --orange-glow: rgba(255, 140, 0, 0.12);
@@ -21,6 +22,7 @@
             --text-dark: #1E293B;
             --text-dark-muted: #64748B;
             --surface: #F8FAFC;
+            --surface-alt: #EEF2FF;
             --white: #FFFFFF;
         }
 
@@ -42,10 +44,6 @@
             min-width: 100vw;
             height: 100vh;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 50px 70px;
             position: relative;
         }
 
@@ -101,116 +99,140 @@
         .nav-btn:hover { background: var(--orange); border-color: var(--orange); }
 
         /* ═══════════════════════════════════════════════════════ */
-        /* SLIDE 1 — CONSTAT                                     */
+        /* SLIDE 1 — HERO IMPACT                                 */
         /* ═══════════════════════════════════════════════════════ */
         .slide-1 {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
             background: 
-                radial-gradient(ellipse at 20% 80%, rgba(37, 99, 235, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 20%, rgba(255, 140, 0, 0.06) 0%, transparent 50%),
-                linear-gradient(160deg, #0D1B2A 0%, #162a44 50%, #0D1B2A 100%);
+                radial-gradient(ellipse at 30% 70%, rgba(37, 99, 235, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 30%, rgba(255, 140, 0, 0.06) 0%, transparent 40%),
+                linear-gradient(135deg, #0D1B2A 0%, #162a44 50%, #0D1B2A 100%);
             color: var(--text-white);
+            padding: 60px;
         }
 
-        .slide-1 .logo-img {
-            height: 50px;
-            margin-bottom: 30px;
+        .slide-1 .logo-hero {
+            height: 70px;
+            margin-bottom: 40px;
             object-fit: contain;
         }
 
+        .slide-1 .hero-subtitle {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--orange);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
         .slide-1 h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: 800;
-            margin-bottom: 45px;
-            text-align: center;
             line-height: 1.15;
+            margin-bottom: 20px;
+            max-width: 900px;
         }
 
         .slide-1 h1 span { color: var(--orange); }
 
-        .problems-grid {
+        .slide-1 .hero-desc {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 650px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .slide-1 .hero-badges {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.75);
+        }
+
+        .hero-badge .badge-icon { font-size: 1rem; }
+
+        /* ═══════════════════════════════════════════════════════ */
+        /* BICOLOR SPLIT LAYOUT (slides 2-5)                     */
+        /* ═══════════════════════════════════════════════════════ */
+        .split-slide {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 22px;
-            max-width: 1150px;
-            width: 100%;
+            grid-template-columns: 1fr 2fr;
+            height: 100vh;
         }
 
-        .problem-cat {
-            background: rgba(255,255,255,0.035);
-            border: 1px solid rgba(255,255,255,0.07);
-            border-radius: 16px;
-            padding: 26px 22px;
-            backdrop-filter: blur(5px);
+        .split-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 45px 40px;
         }
 
-        .problem-cat h3 {
-            font-size: 0.82rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 18px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid rgba(255,255,255,0.07);
-        }
-
-        .cat-finance h3 { color: #fca5a5; }
-        .cat-terrain h3 { color: #93c5fd; }
-        .cat-admin h3 { color: #fde68a; }
-
-        .p-item { display: flex; gap: 10px; margin-bottom: 14px; }
-        .p-item:last-child { margin-bottom: 0; }
-        .p-item .ico { font-size: 1.1rem; margin-top: 2px; }
-        .p-item h4 { font-size: 0.84rem; font-weight: 600; color: rgba(255,255,255,0.9); margin-bottom: 2px; }
-        .p-item p { font-size: 0.73rem; color: rgba(255,255,255,0.45); line-height: 1.3; }
-
-        /* ═══════════════════════════════════════════════════════ */
-        /* SLIDE 2 — ENSEIGNANTS (fond texturé + screenshots)    */
-        /* ═══════════════════════════════════════════════════════ */
-        .slide-2 {
-            background: 
-                radial-gradient(ellipse at 70% 30%, rgba(255,140,0,0.06) 0%, transparent 40%),
-                linear-gradient(170deg, #0f1f33 0%, #162a44 40%, #0D1B2A 100%);
-            color: var(--text-white);
+        .split-visual {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 45px;
+            gap: 16px;
         }
 
         .section-tag {
-            font-size: 0.72rem;
+            font-size: 0.7rem;
             font-weight: 700;
-            color: var(--orange);
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 10px;
         }
 
-        .slide-2 h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 8px; }
-        .slide-2 .sub { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 35px; }
-
-        .ens-layout {
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 35px;
-            max-width: 1200px;
-            width: 100%;
-            align-items: center;
+        .split-text h2 {
+            font-size: 1.9rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 12px;
         }
 
-        .ens-features { display: flex; flex-direction: column; gap: 16px; }
-
-        .ens-card {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-left: 4px solid var(--orange);
-            border-radius: 12px;
-            padding: 20px 22px;
+        .split-text .desc {
+            font-size: 0.88rem;
+            line-height: 1.6;
+            margin-bottom: 22px;
         }
 
-        .ens-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; }
-        .ens-card p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
+        .feature-list { list-style: none; padding: 0; }
+
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.82rem;
+            line-height: 1.4;
+        }
+
+        .feature-list li .f-icon { font-size: 1rem; margin-top: 1px; flex-shrink: 0; }
 
         .tag-green {
             display: inline-block;
-            margin-top: 8px;
-            padding: 3px 10px;
+            margin-top: 14px;
+            padding: 4px 12px;
             border-radius: 10px;
             font-size: 0.65rem;
             font-weight: 700;
@@ -218,185 +240,131 @@
             color: #86efac;
         }
 
-        .screenshots-col { display: flex; flex-direction: column; gap: 12px; }
-
-        .ss-img {
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 6px 25px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.08);
-        }
-
-        .ss-img img { width: 100%; height: auto; display: block; }
-
-        .ss-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-
-        .ss-label {
-            font-size: 0.65rem;
-            text-align: center;
-            color: var(--text-muted);
-            margin-top: 4px;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
-        /* ═══════════════════════════════════════════════════════ */
-        /* SLIDE 3 — COMPTA (fond clair texturé + screenshot)    */
-        /* ═══════════════════════════════════════════════════════ */
-        .slide-3 {
-            background: 
-                radial-gradient(ellipse at 30% 70%, rgba(37,99,235,0.04) 0%, transparent 40%),
-                linear-gradient(180deg, #FFFFFF 0%, #F1F5F9 100%);
-            color: var(--text-dark);
-        }
-
-        .slide-3 .section-tag { color: var(--bleu-royal); }
-        .slide-3 h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 8px; }
-        .slide-3 h1 span { color: var(--bleu-royal); }
-        .slide-3 .sub { font-size: 0.95rem; color: var(--text-dark-muted); margin-bottom: 35px; }
-
-        .compta-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 35px;
-            max-width: 1200px;
-            width: 100%;
-            align-items: center;
-        }
-
-        .compta-cards { display: flex; flex-direction: column; gap: 14px; }
-
-        .c-card {
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-left: 4px solid var(--bleu-royal);
-            border-radius: 12px;
-            padding: 20px 22px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-        }
-
-        .c-card h3 { font-size: 0.95rem; font-weight: 700; color: var(--text-dark); margin-bottom: 6px; }
-        .c-card p { font-size: 0.82rem; color: var(--text-dark-muted); line-height: 1.5; }
-
         .badge-soon {
             display: inline-block;
-            margin-top: 8px;
-            padding: 3px 10px;
+            margin-top: 6px;
+            padding: 4px 12px;
             border-radius: 10px;
             font-size: 0.65rem;
             font-weight: 700;
             background: rgba(255,140,0,0.12);
-            color: #d97706;
+            color: #fbbf24;
         }
+
+        /* Screenshots in visual panel */
+        .ss-img {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+            border: 1px solid rgba(255,255,255,0.08);
+            width: 100%;
+        }
+
+        .ss-img img { width: 100%; height: auto; display: block; }
 
         .ss-img-light {
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
             border: 1px solid #e2e8f0;
+            width: 100%;
         }
 
         .ss-img-light img { width: 100%; height: auto; display: block; }
 
+        .ss-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; width: 100%; }
+
+        .ss-label {
+            font-size: 0.62rem;
+            text-align: center;
+            margin-top: 5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
         /* ═══════════════════════════════════════════════════════ */
-        /* SLIDE 4 — COMPÉTITIONS & COM (fond sombre split)      */
+        /* SLIDE 2 — ENSEIGNANTS (dark blue | dark warm)         */
         /* ═══════════════════════════════════════════════════════ */
-        .slide-4 {
-            background: 
-                radial-gradient(ellipse at 60% 60%, rgba(255,140,0,0.05) 0%, transparent 40%),
-                linear-gradient(140deg, #0D1B2A 0%, #1a3352 50%, #0D1B2A 100%);
+        .slide-2 .split-text {
+            background: var(--dark-base);
             color: var(--text-white);
         }
 
-        .slide-4 h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 8px; }
-        .slide-4 .sub { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 35px; }
-
-        .comp-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            max-width: 1200px;
-            width: 100%;
-            align-items: start;
+        .slide-2 .split-visual {
+            background: linear-gradient(160deg, #162a44 0%, #1d3454 100%);
         }
 
-        .comp-block {
-            background: rgba(255,255,255,0.035);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 16px;
-            padding: 28px 24px;
-        }
-
-        .comp-block h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 12px; }
-        .comp-block p { font-size: 0.84rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 14px; }
-
-        .comp-list { list-style: none; padding: 0; }
-        .comp-list li {
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.7);
-            padding: 7px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            display: flex; align-items: center; gap: 8px;
-        }
-        .comp-list li::before { content: "→"; color: var(--orange); font-weight: 700; }
-
-        .comp-screenshot {
-            margin-top: 16px;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.08);
-        }
-
-        .comp-screenshot img { width: 100%; height: auto; display: block; }
+        .slide-2 .section-tag { color: var(--orange); }
+        .slide-2 .desc { color: var(--text-muted); }
+        .slide-2 .feature-list li { color: rgba(255,255,255,0.8); }
+        .slide-2 .feature-list li { border-color: rgba(255,255,255,0.06); }
+        .slide-2 .ss-label { color: var(--text-muted); }
 
         /* ═══════════════════════════════════════════════════════ */
-        /* SLIDE 5 — BUREAU (fond clair + screenshot)            */
+        /* SLIDE 3 — COMPTA (light white | light blue)           */
         /* ═══════════════════════════════════════════════════════ */
-        .slide-5 {
-            background: 
-                radial-gradient(ellipse at 80% 30%, rgba(37,99,235,0.04) 0%, transparent 40%),
-                linear-gradient(170deg, #FFFFFF 0%, #F1F5F9 50%, #EEF2FF 100%);
+        .slide-3 .split-text {
+            background: var(--white);
             color: var(--text-dark);
         }
 
+        .slide-3 .split-visual {
+            background: linear-gradient(160deg, #F1F5F9 0%, #EEF2FF 100%);
+        }
+
+        .slide-3 .section-tag { color: var(--bleu-royal); }
+        .slide-3 h2 span { color: var(--bleu-royal); }
+        .slide-3 .desc { color: var(--text-dark-muted); }
+        .slide-3 .feature-list li { color: var(--text-dark); border-color: #e2e8f0; }
+
+        /* ═══════════════════════════════════════════════════════ */
+        /* SLIDE 4 — COMPÉTITIONS (dark warm | dark base)        */
+        /* ═══════════════════════════════════════════════════════ */
+        .slide-4 .split-text {
+            background: linear-gradient(180deg, #1a3352 0%, #162a44 100%);
+            color: var(--text-white);
+        }
+
+        .slide-4 .split-visual {
+            background: var(--dark-base);
+        }
+
+        .slide-4 .section-tag { color: var(--orange); }
+        .slide-4 .desc { color: var(--text-muted); }
+        .slide-4 .feature-list li { color: rgba(255,255,255,0.8); border-color: rgba(255,255,255,0.06); }
+        .slide-4 .ss-label { color: var(--text-muted); }
+
+        /* ═══════════════════════════════════════════════════════ */
+        /* SLIDE 5 — BUREAU (light blue | white)                 */
+        /* ═══════════════════════════════════════════════════════ */
+        .slide-5 .split-text {
+            background: linear-gradient(180deg, #EEF2FF 0%, #F1F5F9 100%);
+            color: var(--text-dark);
+        }
+
+        .slide-5 .split-visual {
+            background: var(--white);
+        }
+
         .slide-5 .section-tag { color: var(--bleu-royal); }
-        .slide-5 h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 8px; }
-        .slide-5 h1 span { color: var(--bleu-royal); }
-        .slide-5 .sub { font-size: 0.95rem; color: var(--text-dark-muted); margin-bottom: 35px; }
-
-        .bureau-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 35px;
-            max-width: 1200px;
-            width: 100%;
-            align-items: center;
-        }
-
-        .bureau-cards { display: flex; flex-direction: column; gap: 14px; }
-
-        .b-card {
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-left: 4px solid var(--bleu-royal);
-            border-radius: 12px;
-            padding: 22px 24px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-        }
-
-        .b-card h3 { font-size: 0.95rem; font-weight: 700; color: var(--text-dark); margin-bottom: 6px; }
-        .b-card p { font-size: 0.82rem; color: var(--text-dark-muted); line-height: 1.5; }
+        .slide-5 h2 span { color: var(--bleu-royal); }
+        .slide-5 .desc { color: var(--text-dark-muted); }
+        .slide-5 .feature-list li { color: var(--text-dark); border-color: #e2e8f0; }
 
         /* ═══════════════════════════════════════════════════════ */
         /* SLIDE 6 — CITATION PLEINE PAGE                        */
         /* ═══════════════════════════════════════════════════════ */
         .slide-6 {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
             background: 
-                radial-gradient(ellipse at 50% 50%, rgba(34,197,94,0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(34,197,94,0.05) 0%, transparent 50%),
                 linear-gradient(135deg, #0D1B2A 0%, #1a3a5c 50%, #0D1B2A 100%);
             color: var(--text-white);
-            text-align: center;
+            padding: 60px;
         }
 
         .slide-6 .proof-label {
@@ -428,7 +396,7 @@
         }
 
         .slide-6 blockquote::before {
-            content: """;
+            content: "\201C";
             position: absolute;
             top: -20px;
             left: -10px;
@@ -466,12 +434,16 @@
         /* SLIDE 7 — ACTION                                      */
         /* ═══════════════════════════════════════════════════════ */
         .slide-7 {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
             background: 
                 radial-gradient(ellipse at 40% 40%, rgba(255,140,0,0.06) 0%, transparent 40%),
                 radial-gradient(ellipse at 70% 80%, rgba(37,99,235,0.05) 0%, transparent 40%),
                 linear-gradient(160deg, #0D1B2A 0%, #162a44 50%, #0D1B2A 100%);
             color: var(--text-white);
-            text-align: center;
+            padding: 60px;
         }
 
         .slide-7 h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 8px; }
@@ -537,182 +509,124 @@
 
     <div class="slides-wrapper" id="slidesWrapper">
         
-        <!-- ═══════ SLIDE 1 : CONSTAT ═══════ -->
+        <!-- ═══════ SLIDE 1 : HERO ═══════ -->
         <div class="slide slide-1">
-            <img src="assets/screenshots/BG-CAMPUS-LOGO_rectangulaire-sas.png" alt="BG Campus" class="logo-img">
-            <h1>Ce que <span>chaque club</span><br>gère au quotidien</h1>
-            <div class="problems-grid">
-                <div class="problem-cat cat-finance">
-                    <h3>Finances & Risques</h3>
-                    <div class="p-item">
-                        <div class="ico">⚠️</div>
-                        <div><h4>Risque fiscal & social</h4><p>Contrats flous, heures non suivies, statut salarié non maîtrisé</p></div>
-                    </div>
-                    <div class="p-item">
-                        <div class="ico">📊</div>
-                        <div><h4>Comptabilité opaque</h4><p>Pas de prévisionnel, autofinancement école non validé</p></div>
-                    </div>
-                    <div class="p-item">
-                        <div class="ico">🧾</div>
-                        <div><h4>Factures & subventions</h4><p>Dossiers à reformater pour chaque financeur</p></div>
-                    </div>
-                </div>
-                <div class="problem-cat cat-terrain">
-                    <h3>Terrain & Animation</h3>
-                    <div class="p-item">
-                        <div class="ico">🏆</div>
-                        <div><h4>Compétitions = galère</h4><p>Dispos par SMS, résultats dispersés</p></div>
-                    </div>
-                    <div class="p-item">
-                        <div class="ico">🎾</div>
-                        <div><h4>École de tennis invisible</h4><p>Groupes non suivis, pas de vision annuelle</p></div>
-                    </div>
-                    <div class="p-item">
-                        <div class="ico">📱</div>
-                        <div><h4>Communication chronophage</h4><p>Des heures sur les réseaux pour peu de résultat</p></div>
-                    </div>
-                </div>
-                <div class="problem-cat cat-admin">
-                    <h3>Organisation & Admin</h3>
-                    <div class="p-item">
-                        <div class="ico">📋</div>
-                        <div><h4>Projets sans suivi</h4><p>Qui fait quoi ? Relances oubliées</p></div>
-                    </div>
-                    <div class="p-item">
-                        <div class="ico">📑</div>
-                        <div><h4>AG & documents</h4><p>Quitus à rédiger, alertes oubliées</p></div>
-                    </div>
-                </div>
+            <img src="assets/screenshots/BG-CAMPUS-LOGO_rectangulaire-sas.png" alt="BG Campus" class="logo-hero">
+            <p class="hero-subtitle">Gestion de club sportif</p>
+            <h1>Vous décidez. Il organise.<br><span>Le club avance.</span></h1>
+            <p class="hero-desc">Une solution complète pour faciliter la gestion de votre club au quotidien. Vous êtes serein.</p>
+            <div class="hero-badges">
+                <span class="hero-badge"><span class="badge-icon">👥</span> Adhérents</span>
+                <span class="hero-badge"><span class="badge-icon">📊</span> Comptabilité</span>
+                <span class="hero-badge"><span class="badge-icon">🎓</span> Enseignants</span>
+                <span class="hero-badge"><span class="badge-icon">🏆</span> Compétitions</span>
+                <span class="hero-badge"><span class="badge-icon">📣</span> Communication</span>
+                <span class="hero-badge"><span class="badge-icon">📋</span> Projets</span>
             </div>
         </div>
 
-        <!-- ═══════ SLIDE 2 : ENSEIGNANTS + SCREENSHOTS ═══════ -->
+        <!-- ═══════ SLIDE 2 : ENSEIGNANTS (1/3 | 2/3) ═══════ -->
         <div class="slide slide-2">
-            <div class="section-tag">Module Enseignants & École de tennis</div>
-            <h1>Maîtriser le risque social</h1>
-            <p class="sub">Chaque heure tracée, chaque mission valorisée — sur PC et sur téléphone</p>
-            <div class="ens-layout">
-                <div class="ens-features">
-                    <div class="ens-card">
-                        <h3>📋 Heures déclarées sur mobile</h3>
-                        <p>L'enseignant déclare depuis le court. Le club compare en temps réel le réalisé au prévisionnel, par mission et par sport.</p>
-                        <span class="tag-green">📱 App Mobile Enseignant</span>
-                    </div>
-                    <div class="ens-card">
-                        <h3>🗓️ Agenda partagé & groupes</h3>
-                        <p>Calendrier multi-vue, récurrence auto, vacances scolaires. Vision annuelle complète de l'école de tennis.</p>
-                        <span class="tag-green">💻📱 PC + Mobile</span>
-                    </div>
-                    <div class="ens-card">
-                        <h3>📄 Valorisation des missions</h3>
-                        <p>Analytique hors enseignement pur : animations, com, formation. Déléguer et valoriser dans la confiance.</p>
-                        <span class="tag-green">💻 PC Admin</span>
-                    </div>
+            <div class="split-slide">
+                <div class="split-text">
+                    <div class="section-tag">Module Enseignants</div>
+                    <h2>Maîtriser le risque social</h2>
+                    <p class="desc">Chaque heure tracée, chaque mission valorisée — sur PC et mobile.</p>
+                    <ul class="feature-list">
+                        <li><span class="f-icon">📱</span> Déclaration d'heures depuis le terrain</li>
+                        <li><span class="f-icon">🗓️</span> Agenda partagé multi-vue, récurrence auto</li>
+                        <li><span class="f-icon">📄</span> Valorisation des missions hors enseignement</li>
+                        <li><span class="f-icon">📈</span> Réalisé vs prévisionnel en temps réel</li>
+                    </ul>
+                    <span class="tag-green">📱 App Mobile Enseignant</span>
                 </div>
-                <div class="screenshots-col">
+                <div class="split-visual">
                     <div class="ss-img">
                         <img src="assets/screenshots/suivi heures.png" alt="Suivi heures enseignants">
                     </div>
                     <div class="ss-row">
                         <div>
                             <div class="ss-img"><img src="assets/screenshots/agenda appli enseignant.png" alt="Agenda enseignant"></div>
-                            <p class="ss-label">App Enseignant</p>
+                            <p class="ss-label">Agenda mobile</p>
                         </div>
                         <div>
                             <div class="ss-img"><img src="assets/screenshots/declaration heure appli enseignant.png" alt="Déclaration heures"></div>
-                            <p class="ss-label">Déclaration mobile</p>
+                            <p class="ss-label">Déclaration terrain</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ═══════ SLIDE 3 : COMPTA + SCREENSHOTS ═══════ -->
+        <!-- ═══════ SLIDE 3 : COMPTA (1/3 | 2/3 light) ═══════ -->
         <div class="slide slide-3">
-            <div class="section-tag">Module Comptabilité & Subventions</div>
-            <h1>Vision financière <span>en temps réel</span></h1>
-            <p class="sub">Budget maîtrisé, dossiers simplifiés, analytique par sport</p>
-            <div class="compta-layout">
-                <div class="compta-cards">
-                    <div class="c-card">
-                        <h3>📊 Budget vs Réalisé</h3>
-                        <p>Prévisionnel annuel basé sur N-1. Recettes, dépenses, provisions, trésorerie. Autofinancement école validé.</p>
-                    </div>
-                    <div class="c-card">
-                        <h3>🧾 Dépenses simplifiées</h3>
-                        <p>Saisie rapide, catégorisation. Plus de facturettes qui traînent.</p>
-                        <span class="badge-soon">🔜 Photo facture mobile</span>
-                    </div>
-                    <div class="c-card">
-                        <h3>🏛️ Formats budget subventions</h3>
-                        <p>Export multi-format selon les modèles des financeurs. Suivi demandes.</p>
-                        <span class="badge-soon">🔜 IA remplissage auto</span>
-                    </div>
+            <div class="split-slide">
+                <div class="split-text">
+                    <div class="section-tag">Module Comptabilité</div>
+                    <h2>Vision financière <span>en temps réel</span></h2>
+                    <p class="desc">Budget maîtrisé, dossiers simplifiés, analytique par sport.</p>
+                    <ul class="feature-list">
+                        <li><span class="f-icon">📊</span> Budget vs réalisé, prévisionnel N-1</li>
+                        <li><span class="f-icon">🧾</span> Saisie rapide des dépenses + catégorisation</li>
+                        <li><span class="f-icon">🏛️</span> Export multi-format pour subventions</li>
+                        <li><span class="f-icon">💰</span> Autofinancement école validé</li>
+                    </ul>
+                    <span class="badge-soon">🔜 Photo facture mobile</span>
                 </div>
-                <div class="screenshots-col">
+                <div class="split-visual">
                     <div class="ss-img-light">
                         <img src="assets/screenshots/compta.png" alt="Comptabilité">
                     </div>
-                    <div class="ss-img-light" style="margin-top:12px">
+                    <div class="ss-img-light">
                         <img src="assets/screenshots/dashboard.png" alt="Dashboard">
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ═══════ SLIDE 4 : COMPÉTITIONS + SCREENSHOT ═══════ -->
+        <!-- ═══════ SLIDE 4 : COMPÉTITIONS (1/3 | 2/3) ═══════ -->
         <div class="slide slide-4">
-            <div class="section-tag">Terrain & Visibilité</div>
-            <h1>Compétitions & Communication</h1>
-            <p class="sub">Les joueurs sur le terrain, les infos en temps réel</p>
-            <div class="comp-layout">
-                <div class="comp-block">
-                    <h3>🏆 Championnats par équipe</h3>
-                    <p>Le joueur déclare sa dispo en 2 clics. Le capitaine voit tout en temps réel.</p>
-                    <ul class="comp-list">
-                        <li>Gestion des groupes et poules</li>
-                        <li>Dispos joueurs sur téléphone</li>
-                        <li>Résultats et classement auto</li>
-                        <li>Planning matchs par journée</li>
+            <div class="split-slide">
+                <div class="split-text">
+                    <div class="section-tag">Compétitions & Communication</div>
+                    <h2>Les joueurs sur le terrain, les infos en temps réel</h2>
+                    <p class="desc">Le joueur déclare sa dispo en 2 clics. Le capitaine voit tout.</p>
+                    <ul class="feature-list">
+                        <li><span class="f-icon">🏆</span> Gestion poules et championnats</li>
+                        <li><span class="f-icon">📱</span> Dispos joueurs sur téléphone</li>
+                        <li><span class="f-icon">📊</span> Résultats et classement auto</li>
+                        <li><span class="f-icon">📣</span> Communication IA — posts générés en 1 clic</li>
                     </ul>
-                    <span class="tag-green" style="margin-top:14px; display:inline-block;">📱 App Joueur</span>
-                    <div class="comp-screenshot">
+                    <span class="tag-green">📱 App Joueur</span>
+                </div>
+                <div class="split-visual">
+                    <div class="ss-img">
                         <img src="assets/screenshots/Championats Equipes.png" alt="Championnats équipes">
                     </div>
-                </div>
-                <div class="comp-block">
-                    <h3>📣 Communication IA</h3>
-                    <p>1 clic : l'IA génère le contenu dans le ton du club.</p>
-                    <ul class="comp-list">
-                        <li>Génération automatique de posts</li>
-                        <li>Choix du ton et du style</li>
-                        <li>Templates réseaux sociaux</li>
-                        <li>Historique des publications</li>
-                    </ul>
-                    <span class="tag-green" style="margin-top:14px; display:inline-block;">💻 PC</span>
+                    <p class="ss-label">Championnats par équipe — vision capitaine</p>
                 </div>
             </div>
         </div>
 
-        <!-- ═══════ SLIDE 5 : BUREAU + SCREENSHOT ═══════ -->
+        <!-- ═══════ SLIDE 5 : BUREAU (1/3 | 2/3 light) ═══════ -->
         <div class="slide slide-5">
-            <div class="section-tag">Organisation du bureau</div>
-            <h1>Qui fait quoi, <span>pour quand</span></h1>
-            <p class="sub">Projets, relances automatiques, documents centralisés</p>
-            <div class="bureau-layout">
-                <div class="bureau-cards">
-                    <div class="b-card">
-                        <h3>✅ Gestion de projets</h3>
-                        <p>Qui fait quoi pour quand. Relance des actions à venir ou en retard. Actions récurrentes et annuelles. Communication bureau / enseignants.</p>
-                    </div>
-                    <div class="b-card">
-                        <h3>📄 Documents & AG</h3>
-                        <p>AG/PV, attestations, CERFA, factures, documents réglementaires. Alertes expiration automatiques.</p>
-                        <span class="badge-soon">🔜 Quitus annuel auto</span>
-                    </div>
+            <div class="split-slide">
+                <div class="split-text">
+                    <div class="section-tag">Organisation du bureau</div>
+                    <h2>Qui fait quoi, <span>pour quand</span></h2>
+                    <p class="desc">Projets, relances automatiques, documents centralisés.</p>
+                    <ul class="feature-list">
+                        <li><span class="f-icon">✅</span> Gestion de projets avec relances auto</li>
+                        <li><span class="f-icon">📄</span> Documents & AG centralisés</li>
+                        <li><span class="f-icon">🔔</span> Alertes expiration automatiques</li>
+                        <li><span class="f-icon">👥</span> Communication bureau / enseignants</li>
+                    </ul>
+                    <span class="badge-soon">🔜 Quitus annuel auto</span>
                 </div>
-                <div class="ss-img-light">
-                    <img src="assets/screenshots/frise gestion de projet.png" alt="Gestion de projet">
+                <div class="split-visual">
+                    <div class="ss-img-light">
+                        <img src="assets/screenshots/frise gestion de projet.png" alt="Gestion de projet">
+                    </div>
                 </div>
             </div>
         </div>
@@ -766,8 +680,8 @@
     </div>
 
     <div class="nav-controls">
-        <button class="nav-btn" onclick="prevSlide()">←</button>
-        <button class="nav-btn" onclick="nextSlide()">→</button>
+        <button class="nav-btn" onclick="prevSlide()">&#8592;</button>
+        <button class="nav-btn" onclick="nextSlide()">&#8594;</button>
     </div>
 
     <script>
@@ -778,24 +692,24 @@
 
         function goToSlide(n) {
             currentSlide = Math.max(0, Math.min(n, totalSlides - 1));
-            wrapper.style.transform = `translateX(-${currentSlide * 100}vw)`;
-            dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+            wrapper.style.transform = 'translateX(-' + (currentSlide * 100) + 'vw)';
+            dots.forEach(function(d, i) { d.classList.toggle('active', i === currentSlide); });
         }
 
         function nextSlide() { goToSlide(currentSlide + 1); }
         function prevSlide() { goToSlide(currentSlide - 1); }
 
-        document.addEventListener('keydown', (e) => {
+        document.addEventListener('keydown', function(e) {
             if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextSlide(); }
             if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
             if (e.key === 'Home') { e.preventDefault(); goToSlide(0); }
             if (e.key === 'End') { e.preventDefault(); goToSlide(totalSlides - 1); }
         });
 
-        let touchStartX = 0;
-        document.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
-        document.addEventListener('touchend', (e) => {
-            const diff = touchStartX - e.changedTouches[0].clientX;
+        var touchStartX = 0;
+        document.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; });
+        document.addEventListener('touchend', function(e) {
+            var diff = touchStartX - e.changedTouches[0].clientX;
             if (Math.abs(diff) > 50) { diff > 0 ? nextSlide() : prevSlide(); }
         });
     </script>
