@@ -223,12 +223,14 @@
             padding: 40px 40px;
             text-align: center;
             border-bottom: 1px solid var(--border);
+            background: var(--dark);
+            color: white;
         }
 
         .trust-bar p {
             font-size: 0.8rem;
             font-weight: 600;
-            color: var(--text-light);
+            color: rgba(255,255,255,0.6);
             text-transform: uppercase;
             letter-spacing: 1.5px;
             margin-bottom: 18px;
@@ -244,12 +246,12 @@
         .trust-metric .val {
             font-size: 2rem;
             font-weight: 800;
-            color: var(--dark);
+            color: var(--orange);
         }
 
         .trust-metric .lbl {
             font-size: 0.78rem;
-            color: var(--text-muted);
+            color: rgba(255,255,255,0.6);
             margin-top: 2px;
         }
 
@@ -839,7 +841,7 @@
     <section class="hero">
         <div class="hero-text">
             <div class="hero-badge">● En production depuis septembre 2025</div>
-            <h1>Vous décidez.<br>Il organise.<br><span>Le club avance.</span></h1>
+            <h1>Une gestion du quotidien<br>facilitée et sécurisée.<br><span>Le club avance plus vite et plus loin.</span></h1>
             <p>BG Campus complète Ten'Up, ADOC, MOJA et HelloAsso là où ils s'arrêtent : la gestion quotidienne de votre club. Enseignants, budget, compétitions, communication — sur PC et sur mobile.</p>
             <div class="hero-actions">
                 <a href="#rejoindre" class="btn-primary">Rejoindre le programme pilote →</a>
@@ -858,10 +860,12 @@
         <p>BG Campus est une SAS co-fondée par deux acteurs du tennis varois :</p>
         <div class="founders-grid">
             <div class="founder-card">
+                <img src="assets/screenshots/BENEVILLE.png" alt="Nicolas Beneville" style="width:64px; height:64px; border-radius:50%; object-fit:cover; margin-bottom:12px;">
                 <strong>Nicolas Beneville</strong>
                 <p>Président du TCM Puget-Ville, club pilote depuis septembre 2025. Il a conçu l'outil pour répondre aux besoins concrets qu'il rencontre chaque semaine en tant que dirigeant.</p>
             </div>
             <div class="founder-card">
+                <img src="assets/screenshots/GODARD.png" alt="Emmanuel Godard" style="width:64px; height:64px; border-radius:50%; object-fit:cover; margin-bottom:12px;">
                 <strong>Emmanuel Godard</strong>
                 <p>Enseignant de tennis, représentant des enseignants à la Ligue PACA. Il garantit que l'outil répond aux réalités du terrain, côté enseignant.</p>
             </div>
@@ -875,7 +879,7 @@
         <div class="trust-metrics">
             <div class="trust-metric"><div class="val">9 mois</div><div class="lbl">de production continue</div></div>
             <div class="trust-metric"><div class="val">600h</div><div class="lbl">d'heures enseignants tracées</div></div>
-            <div class="trust-metric"><div class="val">0</div><div class="lbl">donnée sensible stockée</div></div>
+            <div class="trust-metric"><div class="val">0</div><div class="lbl">donnée bancaire ou médicale</div></div>
             <div class="trust-metric"><div class="val">10</div><div class="lbl">modules actifs</div></div>
             <div class="trust-metric"><div class="val">3</div><div class="lbl">interfaces (PC + 2 apps)</div></div>
         </div>
@@ -952,7 +956,8 @@
             <div class="note">📌 BG Campus est un outil d'aide à la gestion budgétaire. Il n'est pas un logiciel comptable certifié. La tenue des comptes et la responsabilité comptable restent celles du dirigeant ou de son expert-comptable.</div>
         </div>
         <div class="feature-visual">
-            <img src="assets/screenshots/compta.png" alt="Comptabilité">
+            <img src="assets/screenshots/compta.png" alt="Comptabilité" style="margin-bottom:12px">
+            <img src="assets/screenshots/budget.png" alt="Budget prévisionnel">
         </div>
     </section>
 
@@ -1004,7 +1009,7 @@
             <span class="tag">Données & Confiance</span>
             <h2>Vos données restent les vôtres</h2>
             <ul class="feature-list">
-                <li><span class="check">✓</span> Aucune donnée sensible dans l'outil — licences et données personnelles restent dans les outils fédéraux (Ten'Up, ADOC, MOJA, HelloAsso)</li>
+                <li><span class="check">✓</span> Données minimales importées — nom, prénom, licence, téléphone uniquement (pas de données bancaires ni médicales)</li>
                 <li><span class="check">✓</span> Un fichier dédié par club — vos données de gestion sont isolées, jamais mutualisées avec d'autres clubs</li>
                 <li><span class="check">✓</span> Réversibilité totale — export intégral de vos données à tout moment, dans un format ouvert (Google Sheets)</li>
                 <li><span class="check">✓</span> Vous partez, vous emportez tout — aucune donnée captive, aucune dépendance forcée</li>
@@ -1095,7 +1100,7 @@
         </div>
         <div class="faq-item">
             <h3>Mes données personnelles sont-elles dans l'outil ?</h3>
-            <p>Non. Licences, classements et données personnelles restent dans Ten'Up, ADOC, MOJA et HelloAsso. BG Campus ne stocke que les données de gestion opérationnelle du club.</p>
+            <p>Les licences et classements restent dans Ten'Up, ADOC, MOJA et HelloAsso. BG Campus importe uniquement les données nécessaires à la gestion opérationnelle (nom, prénom, licence, téléphone) — pas de données bancaires ni médicales.</p>
         </div>
         <div class="faq-item">
             <h3>Ça remplace mon expert-comptable ?</h3>
