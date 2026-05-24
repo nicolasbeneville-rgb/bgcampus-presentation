@@ -100,28 +100,34 @@
 
         /* ═══ HERO ═══ */
         .hero {
-            padding: 140px 40px 80px;
+            padding: 140px 40px 60px;
             background: linear-gradient(160deg, var(--bg) 0%, var(--bg-blue) 60%, var(--bg) 100%);
             max-width: 1280px;
             margin: 0 auto;
-            text-align: center;
         }
-
-        .hero-text { max-width: 900px; margin: 0 auto; }
 
         .hero-headline {
             font-size: 3.2rem;
             font-weight: 800;
             line-height: 1.15;
-            margin-bottom: 8px;
+            margin-bottom: 30px;
             color: var(--dark);
+            text-align: center;
         }
 
+        .hero-body {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .hero-text { max-width: 540px; }
+
         .hero-subline {
-            font-size: 2.4rem;
+            font-size: 2rem;
             font-weight: 800;
             line-height: 1.2;
-            margin-bottom: 24px;
+            margin-bottom: 16px;
             color: var(--orange);
         }
 
@@ -150,21 +156,18 @@
         .hero h1 span { color: var(--orange); }
 
         .hero p {
-            font-size: 1.15rem;
+            font-size: 1.05rem;
             color: var(--text-muted);
             line-height: 1.6;
-            margin-bottom: 30px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+            margin-bottom: 0;
         }
 
-        .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+        .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 30px; }
 
         .hero-visual {
-            max-width: 800px;
+            flex-shrink: 0;
+            max-width: 560px;
             width: 100%;
-            margin: 40px auto 0;
         }
 
         .hero-visual img {
@@ -822,8 +825,9 @@
 
         /* ═══ RESPONSIVE ═══ */
         @media (max-width: 900px) {
-            .hero { flex-direction: column; padding: 120px 24px 50px; gap: 40px; }
-            .hero h1 { font-size: 2.2rem; }
+            .hero { padding: 120px 24px 50px; }
+            .hero-headline { font-size: 2.2rem; }
+            .hero-body { flex-direction: column; gap: 30px; }
             .hero-visual { max-width: 100%; }
             .feature-section { grid-template-columns: 1fr; gap: 30px; padding: 50px 24px; }
             .feature-section.reversed { direction: ltr; }
@@ -855,18 +859,19 @@
 
     <!-- ═══ HERO ═══ -->
     <section class="hero">
-        <div class="hero-text">
-            <div class="hero-badge">● En production depuis septembre 2025</div>
-            <div class="hero-headline">Une gestion du quotidien facilitée et sécurisée.</div>
-            <div class="hero-subline">C'est un club qui avance plus vite et plus loin.</div>
-            <p>BG Campus complète Ten'Up, ADOC, MOJA et HelloAsso là où ils s'arrêtent : la gestion quotidienne de votre club. Enseignants, budget, compétitions, communication — sur PC et sur mobile.</p>
-            <div class="hero-actions">
-                <a href="#rejoindre" class="btn-primary">Rejoindre le programme pilote →</a>
-                <a href="#enseignants" class="btn-secondary">Découvrir les modules</a>
+        <div class="hero-headline">Une gestion du quotidien facilitée et sécurisée.</div>
+        <div class="hero-body">
+            <div class="hero-text">
+                <div class="hero-subline">C'est un club qui avance plus vite et plus loin.</div>
+                <p>BG Campus complète Ten'Up, ADOC, MOJA et HelloAsso là où ils s'arrêtent : la gestion quotidienne de votre club. Enseignants, budget, compétitions, communication — sur PC et sur mobile.</p>
+            </div>
+            <div class="hero-visual">
+                <img src="assets/screenshots/dashboard.png" alt="Dashboard BG Campus">
             </div>
         </div>
-        <div class="hero-visual">
-            <img src="assets/screenshots/dashboard.png" alt="Dashboard BG Campus">
+        <div class="hero-actions">
+            <a href="#rejoindre" class="btn-primary">Rejoindre le programme pilote →</a>
+            <a href="#enseignants" class="btn-secondary">Découvrir les modules</a>
         </div>
     </section>
 
