@@ -102,15 +102,28 @@
         .hero {
             padding: 140px 40px 80px;
             background: linear-gradient(160deg, var(--bg) 0%, var(--bg-blue) 60%, var(--bg) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 60px;
             max-width: 1280px;
             margin: 0 auto;
+            text-align: center;
         }
 
-        .hero-text { max-width: 540px; }
+        .hero-text { max-width: 900px; margin: 0 auto; }
+
+        .hero-headline {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+
+        .hero-subline {
+            font-size: 2.4rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            color: var(--orange);
+        }
 
         .hero-badge {
             display: inline-flex;
@@ -141,14 +154,17 @@
             color: var(--text-muted);
             line-height: 1.6;
             margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+        .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
 
         .hero-visual {
-            flex-shrink: 0;
-            max-width: 560px;
+            max-width: 800px;
             width: 100%;
+            margin: 40px auto 0;
         }
 
         .hero-visual img {
@@ -841,7 +857,8 @@
     <section class="hero">
         <div class="hero-text">
             <div class="hero-badge">● En production depuis septembre 2025</div>
-            <h1>Une gestion du quotidien<br>facilitée et sécurisée.<br><span>Le club avance plus vite et plus loin.</span></h1>
+            <div class="hero-headline">Une gestion du quotidien facilitée et sécurisée.</div>
+            <div class="hero-subline">C'est un club qui avance plus vite et plus loin.</div>
             <p>BG Campus complète Ten'Up, ADOC, MOJA et HelloAsso là où ils s'arrêtent : la gestion quotidienne de votre club. Enseignants, budget, compétitions, communication — sur PC et sur mobile.</p>
             <div class="hero-actions">
                 <a href="#rejoindre" class="btn-primary">Rejoindre le programme pilote →</a>
